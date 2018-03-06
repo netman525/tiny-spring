@@ -15,7 +15,7 @@ import java.io.Serializable;
  * @author Alexia
  * @date  2013-10-15
  */
-public class TransientTest {
+public class Transient {
     
     public static void main(String[] args) {
         
