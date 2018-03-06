@@ -1,0 +1,12 @@
+.project
+.settings
+.classpath
+target/
+*.iml
+.idea
+.svn
+.pmd
+local.properties
+core-site.xml
+hbase-site.xml
+hdfs-site.xml
