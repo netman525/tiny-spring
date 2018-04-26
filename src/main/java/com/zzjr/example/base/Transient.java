@@ -24,8 +24,8 @@ public class Transient {
         user.setPasswd("123456");
         
         System.out.println("read before Serializable: ");
-        System.out.println("username: " + user.getUsername());
-        System.err.println("password: " + user.getPasswd());
+        System.out.println("before username: " + user.getUsername());
+        System.err.println("before password: " + user.getPasswd());
         
         try {
             ObjectOutputStream os = new ObjectOutputStream(
@@ -47,8 +47,8 @@ public class Transient {
             is.close();
             
             System.out.println("\nread after Serializable: ");
-            System.out.println("username: " + user.getUsername());
-            System.err.println("password: " + user.getPasswd());
+            System.out.println("after username: " + user.getUsername());
+            System.err.println("after password: " + user.getPasswd());
             
         } catch (FileNotFoundException e) {
             e.printStackTrace();
