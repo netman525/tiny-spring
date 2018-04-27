@@ -22,7 +22,7 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
     public TimeClientHandler(){
         byte[] req = "QUERY TIME ORDER".getBytes();
         firstMessage = Unpooled.buffer(req.length);
-        firstMessage.writableBytes();
+        firstMessage.writeBytes(req);
     }
 
     @Override
