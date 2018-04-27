@@ -3,6 +3,7 @@ package com.zzjr.example.thread;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -28,21 +29,20 @@ public class ThreadPoolTest {
             new ThreadPoolExecutor.DiscardOldestPolicy()
         );
 
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run(){
+                try {
+                    Thread.sleep(10000);
+                    System.out.println(Thread.currentThread().getName() + " run");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-                Runnable myRunnable = new Runnable() {
-                    @Override
-                    public void run(){
-                        try {
-                            Thread.sleep(10000);
-                            System.out.println(Thread.currentThread().getName() + " run");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+            }
+        };
 
-                    }
-                };
-
-                asycControllerTheradPool.execute(myRunnable);
-                asycControllerTheradPool.execute(myRunnable);
+        asycControllerTheradPool.execute(myRunnable);
+        asycControllerTheradPool.execute(myRunnable);
     }
 }
