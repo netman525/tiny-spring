@@ -31,7 +31,7 @@ public class TimeServerHandler extends ChannelHandlerAdapter {
                                  ? new Date(System.currentTimeMillis()).toString()
                                  : "BAD ORDER";
             ByteBuf response = Unpooled.copiedBuffer(currentTime.getBytes());
-            ctx.write(response);
+            ctx.writeAndFlush(response);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
