@@ -28,6 +28,7 @@ public class TimeClientHandle implements Runnable {
         this.host = null == host ? "127.0.0.1" : host;
         this.port = port;
         try {
+            selector = Selector.open();
             socketChannel = SocketChannel.open();
             socketChannel.configureBlocking(false);
         } catch (Exception e) {
