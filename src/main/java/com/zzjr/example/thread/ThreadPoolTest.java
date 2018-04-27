@@ -4,7 +4,6 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -17,32 +16,33 @@ import java.util.concurrent.TimeUnit;
  */
 public class ThreadPoolTest {
 
-    private static ExecutorService asycControllerTheradPool = null;
-
-    /**
-     *
-     */
-    private static ThreadFactory asycControllerTheradPoolFactory = new ThreadFactoryBuilder().setNameFormat(
-        "asyc-controller-linkInfo-%d").build();
-
     public static void main(String[] args){
-        asycControllerTheradPool = new ThreadPoolExecutor(
+
+        ExecutorService asycControllerTheradPool = new ThreadPoolExecutor(
             3,
-            2,
+            10,
             0L,
             TimeUnit.MILLISECONDS,
             new LinkedBlockingQueue<Runnable>(10),
-            asycControllerTheradPoolFactory,
+            new ThreadFactoryBuilder().setNameFormat("asyc-controller-linkInfo-%d").build(),
             new ThreadPoolExecutor.DiscardOldestPolicy()
         );
 
-        for(int i = 0 ;i < 2 ;i ++){
-            asycControllerTheradPool.execute(new Runnable() {
-                @Override
-                public void run(){
-                    System.out.println("Hello " + i);
-                }
-            });
-        }
+
+                Runnable myRunnable = new Runnable() {
+                    @Override
+                    public void run(){
+                        try {
+                            Thread.sleep(10000);
+                            System.out.println(Thread.currentThread().getName() + " run");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                };
+
+                asycControllerTheradPool.execute(myRunnable);
+                asycControllerTheradPool.execute(myRunnable);
     }
 }
