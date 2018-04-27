@@ -24,7 +24,7 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
     private static final Logger logger = Logger.getLogger(TimeClientHandler.class.getName());
 
     public TimeClientHandler(){
-        byte[] req = ("QUERY TIME ORDER" + System.getProperty("line.separator")).getBytes();
+        req = ("QUERY TIME ORDER" + System.getProperty("line.separator")).getBytes();
     }
 
     @Override
